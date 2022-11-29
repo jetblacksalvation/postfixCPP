@@ -41,7 +41,8 @@ int main()
     for (auto iter: equation ) {
         if (In_Stack.size() <=1) {
 
-            std::cout << In_Stack.top();
+            //std::cout << In_Stack.top();// this line breaks everything for some reason?? 
+                
             return 1;
         }
         if ([&iter, &In_Stack, &temp_buff, &temp_val, &temp_val2, &c_buffer]() {
@@ -67,14 +68,16 @@ int main()
             if (iter == ' ') {
                 //stop accumilating, push to stack 
                 temp_buff[c_buffer + 1] = '\n';
-                In_Stack.push((double)atoi(temp_buff));
+                In_Stack.push((double)atof(temp_buff));
                 c_buffer = 0;
                 memset(temp_buff, ' ', 100);
             }
+            else {
 
-            temp_buff[c_buffer] = iter;
-            c_buffer++;
-            //else- 
+                temp_buff[c_buffer] = iter;
+                c_buffer++;
+                //else- 
+            }
         }
     }
 
